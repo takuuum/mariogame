@@ -2,8 +2,11 @@
     width: 960px;
     text-align: center;
 }
-.controler img{
+.butt {
+    display: inline-block; 
     width: 10%;
     margin: 5% 10%;
 }
-
+.butt img {
+    width: 100%;
+}
