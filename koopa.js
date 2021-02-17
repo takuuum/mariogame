@@ -21,9 +21,14 @@ class Koopa extends Sprite {
         if(this.kill) return;
         
         if(this.checkStanp(ojisan)) {
-            score.push(200);
             this.sp = 133;
             this.vx = 32;
+            if(++this.killcount == 8) {
+                score.push(200);
+                let sound = new Audio('kill.mp3');
+                sound.play();
+                sound.volume = 0.5;
+            }
             return;
         }
         this.checkWall();
