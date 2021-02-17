@@ -1,12 +1,6 @@
 'use strict';
 // クリボーのクラス
-// const wait = (sec) => {
-//     return new Promise((resolve) => {
-//       setTimeout(resolve, sec*1000);
-//     });
-//   };
-// let sprite = new Sprite;
-// class Goomba extends Sprite {
+
 class Goomba extends Sprite {
 
     constructor(x,y) {
@@ -16,16 +10,18 @@ class Goomba extends Sprite {
         this.sp = 96;
         this.w  = 16;
         this.h  = 16;
-        this.vx = -7;
+        this.vx = -8;
         this.vy = 0;
     }
 
     // 更新処理
     update() {
         if((this.x>>4) > (ojisan.x>>4)+SCREEN_SIZE_W) return;
+        // return;
 
         if(this.checkStanp(ojisan)) {
             this.vx = 0;
+            score.push(100);
             ++this.killcount <=8;
             if(this.killcount < 8) this.sp = 98;
             else this.kill = true; 
@@ -39,10 +35,13 @@ class Goomba extends Sprite {
         else if(this.count < 32) this.sp = 97;
         else if(this.count = 32) this.count = 0;
         if(this.checkHit(ojisan)) ojisan.killDown();
+        if(this.checkHit(Fire)) {
+            this.kill = true;
+            Fire.kill = true;
+        }
         this.checkWall();
         this.checkFloor();
         super.update();
-        // if(this.checkHit(sprite)) this.vx *= -1
     }
 
     // 描画処理
@@ -75,4 +74,3 @@ let goomba = [
     new Goomba(3120,170),
     new Goomba(3130,170),
 ];
-
