@@ -40,5 +40,22 @@
 <script src="main.js"></script>
 <script src="music.js"></script>
 <!-- <script src="touch.js"></script> -->
+<script>
+  // フルスクリーンにする
+  document.querySelector("#btn-open").addEventListener("click", ()=>{
+    if ( screenfull.enabled ) {
+      const element = document.querySelector("#photo");
+      screenfull.request(element);
+    }
+    else{
+      alert("フルスクリーン未対応です");
+    }
+  });
+
+  // フルスクリーンを解除
+  document.querySelector("#btn-close").addEventListener("click", ()=>{
+    screenfull.exit();
+  });
+</script>
 </body>
 </html>
