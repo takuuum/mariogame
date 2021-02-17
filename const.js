@@ -3,8 +3,11 @@
 // 定数の定義用のJS
 
 const GAME_FPS  = 1000/60; //FPS
-const SCREEN_SIZE_W = 320; //画面サイズ横
-const SCREEN_SIZE_H = 224; //画面サイズ縦
+const SCREEN_SIZE_W = document.documentElement.clientWidth - 10; //画面サイズ横
+const SCREEN_SIZE_H = document.documentElement.clientHeight - 10;//画面サイズ縦
+
+// const SCREEN_SIZE_W = 320; //画面サイズ横
+// const SCREEN_SIZE_H = 224; //画面サイズ縦
 // const cSCREEN_SIZE_W = 320; //画面サイズ横
 // const cSCREEN_SIZE_H = 160; //画面サイズ縦
 // const SCREEN_SIZE_W = 256; //画面サイズ横
