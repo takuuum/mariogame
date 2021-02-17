@@ -38,21 +38,9 @@ function updateObj(obj) {
 
 // 更新処理
 function update() {
-
-    // クリボーを更新
-    updateObj(goomba);
-    updateObj(piranha);
-    updateObj(bowser);
-    updateObj(bulletbill);
-    updateObj(koopa);
-
+    
     // おじさんの更新
     ojisan.update();
-
-    if(ojisan.kinoko || ojisan.goal) return;
-
-    // マップの更新
-    field.update();
 
     // ブロックとアイテムの更新
     updateObj(block);
@@ -60,6 +48,20 @@ function update() {
     updateObj(bowserfire);
     updateObj(bowserfire1);
     updateObj(fire);
+    
+    if(!music.start) return;
+    
+    // 敵を更新
+    updateObj(goomba);
+    updateObj(piranha);
+    updateObj(bowser);
+    updateObj(bulletbill);
+    updateObj(koopa);
+    
+    if(ojisan.kinoko || ojisan.goal) return;
+
+    // マップの更新
+    field.update();
 }
 
 // スプライトの描画
@@ -106,21 +108,39 @@ function draw() {
     drawObj(bowser);
     drawObj(koopa);
 
-    // 画面に情報を表示
-    vcon.font="16px";
-    vcon.fillStyle="white";
-    let time;
-    let sum = 0;
-    time = 100-Math.floor(frameCount/70); 
-    if(time == 0) location.reload();
+    if(!music.start) {
+    // 画面にタイトルを表示
+        let chara = new Image();
+        chara.src="https://fontmeme.com/permalink/210217/c8a8184c38b17e42fb21ce1c220e559a.png";
+        vcon.drawImage(chara, 100, 58, 120,25);
 
-    for(let i=0; i<score.length; i++) {
-        sum += score[i];
+        let chara2 = new Image();
+        chara2.src="https://fontmeme.com/permalink/210217/66c022225209a9b0383f5cdfccd85c2c.png";
+        vcon.drawImage(chara2, 35, 90, 250,30);
+
+        vcon.font="50px";
+        vcon.fillStyle="white";
+        vcon.fillText('>  はじめる', 130, 160);
+    }else {
+        // 画面に情報を表示
+        vcon.font="16px";
+        vcon.fillStyle="white";
+        let time;
+        let sum = 0;
+        time = 200-Math.floor(frameCount/70); 
+        if(time == 100) {
+            let sound = new Audio('countdown.mp3');
+            sound.play();
+        }
+        if(time == 0) location.reload();
+        for(let i=0; i<score.length; i++) {
+            sum += score[i];
+        }
+
+        vcon.fillText('SCORE : ' + sum, 10, 20);
+        vcon.fillText('WORLD : 1-1 ', 160, 20);
+        vcon.fillText('TIME : ' + time, 240, 20);
     }
-
-    vcon.fillText('SCORE : ' + sum, 10, 20);
-    vcon.fillText('WORLD : 1-1 ', 160, 20);
-    vcon.fillText('TIME : ' + time, 240, 20);
 
     // 仮想画面から実画面へ拡大転送
     con.drawImage(vcan,0,0,SCREEN_SIZE_W,SCREEN_SIZE_H,
