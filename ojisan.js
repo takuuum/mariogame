@@ -85,6 +85,8 @@ class Ojisan {
                 }else {
                     item.push(new Item(384,x,y,0,0,ITEM_COIN));
                     score.push(200);
+                    let sound = new Audio('coin.wav');
+                    sound.play();
                 }
                 
 
@@ -127,10 +129,13 @@ class Ojisan {
                 this.vx   = -1;
                 this.vy   = 20;
                 this.anime = ANIME_GOAL;
-                let x = this.x>>4
-            if(this.x>>4==3142 && this.y>>4==144 && this.anime==ANIME_GOAL) this.goal = 1;
-
+                music.pause();
+            if(this.x>>4==3142 && this.y>>4==144 && this.anime==ANIME_GOAL) {
+                this.goal = 1;
+                let sound = new Audio('goal.wav');
+                sound.play();
             }
+        }
         // console.log(this.x>>4,this.y>>4);
         if(this.x>>4 == 3250 && this.y>>4 == 160) this.goal = 2;
     }
@@ -144,6 +149,8 @@ class Ojisan {
                 this.anime = ANIME_JUMP;
                 this.jump  = 1;
                 this.vy    = -64;
+                let sound = new Audio('jump.wav');
+                sound.play();
             }
             if(this.jump < 15) this.vy = -(64 - this.jump); //大ジャンブ
         }
@@ -158,6 +165,8 @@ class Ojisan {
                 let lx = ((this.x+this.vx)>>4);
                 let ly = ((this.y+this.vy)>>4);    
                 fire.push(new Fire(lx,ly));
+                let sound = new Audio('fire.wav');
+                sound.play();
             }
             ++this.count;
             if(this.count < 8) {
@@ -177,14 +186,22 @@ class Ojisan {
                 this.anime = ANIME_KILL;
                 this.vx   = 0;
                 this.vy = -72;
+                let sound = new Audio('ojisankill.wav');
+                sound.play();
                 break;
             case TYPE_BIG:
                 this.count = 1;
                 this.down  = 2;
+                let sound1 = new Audio('down.mp3');
+                sound1.play();
+                sound1.volume = 0.5
                 break;
             case TYPE_FIRE:
                 this.count = 1;
                 this.down  = 4;
+                let sound2 = new Audio('down.mp3');
+                sound2.play();
+                sound2.volume = 0.5
                 break;
         }
         return;
@@ -370,7 +387,7 @@ class Ojisan {
         }
 
         // 下に落ちたらリロード
-        if(this.y >= 500<<4) location.reload();
+        if(this.y >= 700<<4) location.reload();
         // console.log(this.x>>4,this.y>>4)
     }
 
@@ -429,19 +446,11 @@ class Fire extends Sprite {
     }
 
     checkCeil() {
-        // if(this.vy >= 0) return;
-
         let ly = ((this.y+this.vy)>>4);
 
         if(ojisan.y>>4 == ly) {
             this.vy   *= -1;
         }
-        // if(this.checkFloor()) {
-        //     let cy = ly;
-
-        //     if(cy-ly == 32) this.vy *= -1;
-        // }
-   
     }
 
     checkFloor() {
@@ -482,12 +491,9 @@ class Fire extends Sprite {
         this.checkFloor();
         this.checkCeil();
         this.checkWall();
-        // super.update();
-        // console.log(this.vy)
     }
 
     draw() {
-        // if(this.kill) return;
         super.draw();
     }
 }
