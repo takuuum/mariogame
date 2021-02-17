@@ -12,6 +12,9 @@ class Item extends Sprite {
     // キノコの処理
     proc_kinoko() {
         if(this.checkHit(ojisan)) {
+            score.push(1000);
+            let sound = new Audio('kinoko.wav');
+            sound.play();
             ojisan.kinoko = 1;
             this.kill = true;
             return true;
@@ -28,6 +31,9 @@ class Item extends Sprite {
     
     proc_fire() {
         if(this.checkHit(ojisan)) {
+            score.push(1000);
+            let sound = new Audio('kinoko.wav');
+            sound.play();
             ojisan.fire = 1;
             this.kill = true;
             return true;
