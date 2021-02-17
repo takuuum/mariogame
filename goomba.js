@@ -21,10 +21,15 @@ class Goomba extends Sprite {
 
         if(this.checkStanp(ojisan)) {
             this.vx = 0;
-            score.push(100);
             ++this.killcount <=8;
             if(this.killcount < 8) this.sp = 98;
-            else this.kill = true; 
+            else {
+                score.push(100);
+                let sound = new Audio('kill.mp3');
+                sound.play();
+                sound.volume = 0.5;
+                this.kill = true; 
+            }
             return
         }
         if(this.kill) return;
