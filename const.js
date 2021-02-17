@@ -48,6 +48,7 @@ const ANIME_BRAKE = 4;
 const ANIME_JUMP  = 8;
 const ANIME_DASH  = 16;
 const ANIME_KILL  = 32;
+const ANIME_GOAL  = 64;
 const GRAVITY     = 4;
 const MAX_SPEED   = 32;
 const DASH_SPEED  = 40;
