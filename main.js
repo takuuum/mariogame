@@ -7,8 +7,6 @@ let startTime;
 let chImg = new Image();
 chImg.src = "sprite.png";
 
-// chImg.onload = draw;
-
 // キーボード
 let keyb = {};
 
@@ -20,12 +18,15 @@ let field = new Field();
 
 let sprite = new Sprite();
 
-// コントローラーをつくる
-// let cont = new Cont();
+// スコアをつくる
+let score = [];
 
 // ブロックのオブジェクト
 let block = [];
 let item  = [];
+let bowserfire   = [];
+let bowserfire1  = [];
+let fire  = [];
 
 function updateObj(obj) {
     // スプライトのブロックとアイテムの更新
@@ -42,20 +43,23 @@ function update() {
     updateObj(goomba);
     updateObj(piranha);
     updateObj(bowser);
+    updateObj(bulletbill);
+    updateObj(koopa);
 
     // おじさんの更新
     ojisan.update();
 
-    if(ojisan.kinoko) return;
+    if(ojisan.kinoko || ojisan.goal) return;
 
     // マップの更新
     field.update();
-    // コントローラーの更新
-    // cont.update();
 
     // ブロックとアイテムの更新
     updateObj(block);
     updateObj(item);
+    updateObj(bowserfire);
+    updateObj(bowserfire1);
+    updateObj(fire);
 }
 
 // スプライトの描画
@@ -79,44 +83,48 @@ function draw() {
     // 画面を水色でクリア
     vcon.fillStyle="#66AAFF"; //背景の色
     vcon.fillRect(0,0,SCREEN_SIZE_W,SCREEN_SIZE_H); //背景のサイズ
-    // vcon1.fillStyle="white"; //背景の色
-    // vcon1.fillRect(0,0,cSCREEN_SIZE_W,cSCREEN_SIZE_H); //背景のサイズ
 
+    // 敵を表示
     drawObj(piranha);
+    drawObj(bulletbill);
+
     // マップを表示
     field.draw();
-    // コントローラーを表示
-    // cont.draw();
 
     // ブロックとアイテムの表示
     drawObj(block);
     drawObj(item);
+    drawObj(bowserfire);
+    drawObj(bowserfire1);
+    drawObj(fire);
     
     // おじさんを表示
     ojisan.draw();
 
-    // クリボーを表示
-    // goomba.draw();
+    // 敵を表示
     drawObj(goomba);
     drawObj(bowser);
+    drawObj(koopa);
 
     // 画面に情報を表示
     vcon.font="16px";
     vcon.fillStyle="white";
     let time;
-    time = Math.floor(frameCount/70); 
-    vcon.fillText('TIME : ' + time, 10, 20);
+    let sum = 0;
+    time = 100-Math.floor(frameCount/70); 
+    if(time == 0) location.reload();
+
+    for(let i=0; i<score.length; i++) {
+        sum += score[i];
+    }
+
+    vcon.fillText('SCORE : ' + sum, 10, 20);
+    vcon.fillText('WORLD : 1-1 ', 160, 20);
+    vcon.fillText('TIME : ' + time, 240, 20);
 
     // 仮想画面から実画面へ拡大転送
     con.drawImage(vcan,0,0,SCREEN_SIZE_W,SCREEN_SIZE_H,
         0,0,SCREEN_SIZE_W *3,SCREEN_SIZE_H *3); 
-    // con1.drawImage(vcan1,0,0,SCREEN_SIZE_W,cSCREEN_SIZE_H,
-    //     0,0,cSCREEN_SIZE_W*3 ,cSCREEN_SIZE_H *3); 
-
-    // コントローラーの描画処理
-    // con1.drawImage(chImg2,57,250,1000,800,0,0,1400,1000);
-
-
 }
 
 // setInterval(mainLoop, 1000/60); 1000ms = 1s
@@ -125,7 +133,6 @@ function draw() {
 window.onload = function() {
     startTime = performance.now(); //今、何msなのかが分かる
     mainLoop();
-
 }
 
 // メインループ
@@ -153,9 +160,6 @@ document.onkeydown = function(e) {
     if(e.keyCode == 90) keyb.BBUTTON = true;
     if(e.keyCode == 88) keyb.ABUTTON = true;
 
-    // if(e.keyCode == 65) {
-    //     block.push(new Block(368,5,5));
-    // }
     if(e.keyCode == 65) field.scx--; //65=「A」
     if(e.keyCode == 83) field.scx++; //83=「S」
 }
