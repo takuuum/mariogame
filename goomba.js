@@ -57,7 +57,7 @@ class Goomba extends Sprite {
 }
 // クリボーを作る
 let goomba = [
-    new Goomba(400,170),
+    new Goomba(4,170),
     new Goomba(580,170),
     new Goomba(800,170),
     new Goomba(880,170),
