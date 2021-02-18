@@ -66,7 +66,7 @@ let goomba = [
     new Goomba(1800,170),
     new Goomba(2100,170),
     new Goomba(2310,170),
-    new Goomba(2570,170),
+    new Goomba(2720,80),
     new Goomba(3030,170),
     new Goomba(3040,170),
     new Goomba(3050,170),
