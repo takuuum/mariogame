@@ -61,7 +61,7 @@ let koopa = [
     new Koopa(1650,170),
     new Koopa(2080,20),
     new Koopa(2420,80),
+    new Koopa(2570,170),
     new Koopa(2830,170),
-    new Koopa(2720,80),
 ];
 
