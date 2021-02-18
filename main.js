@@ -120,7 +120,7 @@ function draw() {
 
         vcon.font="50px";
         vcon.fillStyle="white";
-        vcon.fillText('>  はじめる', 130, 160);
+        vcon.fillText('>  下のはじめるを押してね', 95, 160);
     }else {
         // 画面に情報を表示
         vcon.font="16px";
