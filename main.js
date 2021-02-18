@@ -224,6 +224,3 @@ aButton.addEventListener("touchend", touchB);
             
         if(e.type == 'touchend')   keyb.BBUTTON = false;
     }
-
-let reload = document.getElementById("reload");
-reload.location.reload();
