@@ -215,6 +215,3 @@ aButton.addEventListener("touchend", touchA);
         if(e.type == 'touchstart') keyb.ABUTTON = true;
         if(e.type == 'touchend')   keyb.ABUTTON = false;
     }
-
-// タッチでの拡大禁止
-document.addEventListener("touchmove", mobile_no_scroll, { passive: false });
