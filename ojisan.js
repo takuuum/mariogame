@@ -182,6 +182,7 @@ class Ojisan {
     killDown() {
         switch(this.type) {
             case TYPE_MINI:
+                music.pause();
                 this.down = 1;
                 this.anime = ANIME_KILL;
                 this.vx   = 0;
