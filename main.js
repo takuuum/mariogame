@@ -212,11 +212,18 @@ let aButton = document.getElementById("aButton");
 aButton.addEventListener("touchstart", touchA);
 aButton.addEventListener("touchend", touchA);
     function touchA(e) {
-//         if(e.type == 'touchstart') keyb.ABUTTON = true;
-        if(e.type == 'touchstart') {
-            keyb.ABUTTON = true;
-            let sound = new Audio('jump.wav');
-            sound.play();
-        }
+        if(e.type == 'touchstart') keyb.ABUTTON = true;
+            
         if(e.type == 'touchend')   keyb.ABUTTON = false;
     }
+let bButton = document.getElementById("bButton"); 
+aButton.addEventListener("touchstart", touchB);
+aButton.addEventListener("touchend", touchB);
+    function touchB(e) {
+        if(e.type == 'touchstart') keyb.BBUTTON = true;
+            
+        if(e.type == 'touchend')   keyb.BBUTTON = false;
+    }
+
+let reload = document.getElementBuId("reload");
+reload.location.reload();
