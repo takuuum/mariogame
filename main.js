@@ -128,11 +128,11 @@ function draw() {
         let time;
         let sum = 0;
         time = 200-Math.floor(frameCount/70); 
-        if(time == 100) {
+        if(frameCount == 100*70) {
             let sound = new Audio('countdown.mp3');
             sound.play();
         }
-        if(time == 0) location.reload();
+        if(rameCount == 200*70) location.reload();
         for(let i=0; i<score.length; i++) {
             sum += score[i];
         }
