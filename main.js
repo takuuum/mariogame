@@ -132,7 +132,7 @@ function draw() {
             let sound = new Audio('countdown.mp3');
             sound.play();
         }
-        if(rameCount == 200*70) location.reload();
+        if(frameCount == 200*70) location.reload();
         for(let i=0; i<score.length; i++) {
             sum += score[i];
         }
