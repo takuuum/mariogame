@@ -43,21 +43,16 @@
 <script src="music.js"></script>
 <!-- <script src="touch.js"></script> -->
 <script>
-  // フルスクリーンにする
-  document.querySelector("#btn-open").addEventListener("click", ()=>{
-    if ( screenfull.enabled ) {
-      const element = document.querySelector("#photo");
-      screenfull.request(element);
-    }
-    else{
-      alert("フルスクリーン未対応です");
-    }
+function resize(){    
+    $(".canvas-responsive").outerHeight($(window).height()*2/3 -$(".canvas-responsive").offset().top- Math.abs($(".canvas-responsive").outerHeight(true) - $(".canvas-responsive").outerHeight()));
+  }
+  $(document).ready(function(){
+    resize();
+    $(window).on("resize", function(){                      
+        resize();
+    });
   });
-
-  // フルスクリーンを解除
-  document.querySelector("#btn-close").addEventListener("click", ()=>{
-    screenfull.exit();
-  });
+  //outerHeight() 高さ取得、 .offset()  位置、Math.abs() 絶対値、
 </script>
 </body>
 </html>
