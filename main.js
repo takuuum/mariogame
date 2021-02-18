@@ -191,6 +191,8 @@ document.onkeyup = function(e) {
     if(e.keyCode == 90) keyb.BBUTTON = false; //90=「Z」
     if(e.keyCode == 88) keyb.ABUTTON = false; //88=「X」
 }
+
+// タッチ操作
 let leftButton = document.getElementById("leftButton"); 
 leftButton.src = "leftbutt.png"
 leftButton.addEventListener("touchstart", touchLeft);
@@ -213,3 +215,6 @@ aButton.addEventListener("touchend", touchA);
         if(e.type == 'touchstart') keyb.ABUTTON = true;
         if(e.type == 'touchend')   keyb.ABUTTON = false;
     }
+
+// タッチでの拡大禁止
+document.addEventListener("touchmove", mobile_no_scroll, { passive: false });
