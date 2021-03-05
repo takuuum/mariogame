@@ -194,33 +194,38 @@ document.onkeyup = function(e) {
 
 // タッチ操作
 let leftButton = document.getElementById("leftButton"); 
-leftButton.src = "leftbutt.png"
 leftButton.addEventListener("touchstart", touchLeft);
+leftButton.addEventListener("touchmove", touchLeft);
 leftButton.addEventListener("touchend", touchLeft);
     function touchLeft(e) {
         if(e.type == 'touchstart') keyb.Left  = true;
+        if(e.type == 'touchmove')  keyb.Left  = true;
         if(e.type == 'touchend')   keyb.Left  = false;
     }
 let rightButton = document.getElementById("rightButton"); 
 rightButton.addEventListener("touchstart", touchRight);
+rightButton.addEventListener("touchmove", touchRight);
 rightButton.addEventListener("touchend", touchRight);
     function touchRight(e) {
         if(e.type == 'touchstart') keyb.Right = true;
+        if(e.type == 'touchmove')  keyb.Right = true;
         if(e.type == 'touchend')   keyb.Right = false;
     }
 let aButton = document.getElementById("aButton"); 
 aButton.addEventListener("touchstart", touchA);
+aButton.addEventListener("touchmove", touchA);
 aButton.addEventListener("touchend", touchA);
     function touchA(e) {
         if(e.type == 'touchstart') keyb.ABUTTON = true;
-            
+        if(e.type == 'touchmove')  keyb.ABUTTON = true;
         if(e.type == 'touchend')   keyb.ABUTTON = false;
     }
 let bButton = document.getElementById("bButton"); 
-aButton.addEventListener("touchstart", touchB);
-aButton.addEventListener("touchend", touchB);
+bButton.addEventListener("touchstart", touchB);
+bButton.addEventListener("touchmove", touchB);
+bButton.addEventListener("touchend", touchB);
     function touchB(e) {
         if(e.type == 'touchstart') keyb.BBUTTON = true;
-            
+        if(e.type == 'touchmove')  keyb.BBUTTON  = true;
         if(e.type == 'touchend')   keyb.BBUTTON = false;
     }
